@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portafolio - Santiago Acosta</title>
+    <style>
+        :root{
+            --bg:#050406;
+            --neon-blue:#00e6ff;
+            --neon-red:#ff2d55;
+            --neon-black:#0b0b0b;
+            --glass: rgba(255,255,255,0.03);
+            --accent: linear-gradient(90deg,var(--neon-red),var(--neon-blue));
+        }
+        *{box-sizing:border-box;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+        html,body{height:100%;margin:0;background:radial-gradient(1200px 600px at 10% 10%, rgba(0,230,255,0.06), transparent),
+            radial-gradient(1000px 400px at 90% 90%, rgba(255,45,85,0.04), transparent),
+            var(--bg); color:#e6f7ff;}
+        .container{max-width:1100px;margin:40px auto;padding:28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 8px 40px rgba(0,0,0,0.7);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.03);}
+        /* Neon header */
+        .hero{display:flex;gap:28px;align-items:center;}
+        .avatar{
+            width:160px;height:160px;border-radius:18px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));
+            border:2px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.5) inset;
+        }
+        .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+        .upload{
+            position:absolute;left:6px;bottom:6px;background:linear-gradient(90deg,#111,#000);border-radius:10px;padding:6px 8px;color:#9fb8ff;font-size:12px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;
+        }
+        h1{margin:0 0 6px 0;font-size:28px;letter-spacing:0.4px;text-shadow:0 0 18px rgba(0,230,255,0.08), 0 0 10px rgba(255,45,85,0.04);}
+        .glow{
+            display:inline-block;padding:4px 10px;border-radius:8px;background:linear-gradient(90deg, rgba(0,230,255,0.06), rgba(255,45,85,0.06));backdrop-filter: blur(6px);
+            box-shadow:0 0 20px rgba(0,230,255,0.06);
+        }
+        .meta{color:#bcdcff;font-size:14px;margin-top:6px;}
+        /* Info card */
+        .info{margin-top:18px;display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start;}
+        .card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.06));border:1px solid rgba(255,255,255,0.02);}
+        .list{display:flex;flex-direction:column;gap:10px;}
+        .item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02);}
+        .label{color:#9fb8ff;font-size:13px}
+        .value{color:#fff;font-weight:600}
+        /* Buttons neon */
+        .actions{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;}
+        .btn{
+            position:relative;overflow:hidden;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,#0f1115,#050507);color:#fff;border:1px solid rgba(255,255,255,0.06);cursor:pointer;
+            transition:transform .22s ease, box-shadow .22s;display:inline-flex;gap:10px;align-items:center;font-weight:600;
+        }
+        .btn:active{transform:translateY(2px)}
+        .btn.neon{
+            box-shadow:0 6px 30px rgba(0,230,255,0.08), 0 0 30px rgba(255,45,85,0.05);
+            background:linear-gradient(90deg, rgba(0,230,255,0.06), rgba(255,45,85,0.06));
+        }
+        .btn .shine{
+            position:absolute;left:-40%;top:0;width:40%;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0));transform:skewX(-20deg);opacity:0;transition:all .6s;
+        }
+        .btn:hover .shine{left:120%;opacity:1;transition:all .8s;}
+        .github{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(90deg,#111,#070708);border:1px solid rgba(255,255,255,0.04);}
+        .pulse{animation:pulse 2s infinite;}
+        @keyframes pulse{0%{box-shadow:0 0 0 rgba(0,0,0,0)}50%{box-shadow:0 0 20px rgba(255,45,85,0.08)}100%{box-shadow:0 0 0 rgba(0,0,0,0)}}
+        /* Projects / Skills */
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+        .skill{padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(0,0,0,0.25), rgba(0,0,0,0.12));border:1px solid rgba(255,255,255,0.02);text-align:center}
+        .neon-tag{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--neon-red),var(--neon-blue));color:black;font-weight:700}
+        /* footer / small */
+        footer{margin-top:20px;color:#9fb8ff;font-size:13px;text-align:center;padding:8px}
+        /* responsive */
+        @media (max-width:800px){
+            .info{grid-template-columns:1fr; }
+            .avatar{width:120px;height:120px;}
+        }
+        /* decorative moving lines */
+        .lines{position:absolute;inset:0;pointer-events:none;opacity:0.06}
+        .lines::before, .lines::after{content:"";position:absolute;left:-20%;top:15%;width:140%;height:2px;background:linear-gradient(90deg,transparent,var(--neon-blue),transparent);transform:skewX(-20deg);animation:slide 8s linear infinite;}
+        .lines::after{top:70%;background:linear-gradient(90deg,transparent,var(--neon-red),transparent);animation-duration:10s;opacity:0.8}
+        @keyframes slide{0%{transform:translateX(-30%) skewX(-20deg)}100%{transform:translateX(30%) skewX(-20deg)}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lines" aria-hidden="true"></div>
+        <section class="hero">
+            <div class="avatar card" title="Sube tu foto">
+                <img id="profilePreview" src="static/img/foto_perfil.jpg" alt="Foto de perfil" />
+                <label class="upload">
+                    Subir
+                    <input id="upload" type="file" accept="image/*" style="display:none">
+                </label>
+            </div>
+
+            <div style="flex:1">
+                <h1 class="glow">Santiago Acosta</h1>
+                <div class="meta">Vivo en Venezuela — Estado Portuguesa, Acarigua · Estudiante de <span style="font-weight:700">Análisis de Sistemas</span> · 4º semestre</div>
+
+                <div class="actions">
+                    <a id="githubBtn" class="btn github neon" href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" title="Ver mi GitHub">
+                        <span style="width:18px;height:18px;display:inline-block">
+                            <!-- simple SVG GitHub icon -->
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.4))">
+                                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.28-1.71-1.28-1.71-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.72 1.25 3.38.96.11-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.72 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.45-2.71 5.43-5.29 5.71.41.36.77 1.09.77 2.2 0 1.59-.01 2.87-.01 3.26 0 .31.21.68.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+                            </svg>
+                        </span>
+                        Ver mi GitHub
+                        <span class="shine" aria-hidden="true"></span>
+                    </a>
+
+                    <button class="btn" onclick="copyInfo()" title="Copiar datos">
+                        Copiar datos
+                        <span class="shine" aria-hidden="true"></span>
+                    </button>
+
+                    <a class="btn" href="#contacto">
+                        Contacto
+                        <span class="shine" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="info" aria-label="Información personal">
+            <div class="card">
+                <h3 style="margin:0 0 10px 0">Datos personales</h3>
+                <div class="list">
+                    <div class="item"><span class="label">Nombre</span><span class="value">Santiago Acosta</span></div>
+                    <div class="item"><span class="label">Ubicación</span><span class="value">Venezuela, Portuguesa, Acarigua</span></div>
+                    <div class="item"><span class="label">Carrera</span><span class="value">Análisis de Sistemas</span></div>
+                    <div class="item"><span class="label">Semestre</span><span class="value">4º semestre</span></div>
+                    <div class="item"><span class="label">Cedula</span><span class="value">V-32.053.225</span></div>
+                </div>
+
+                <div style="margin-top:12px">
+                    <div class="neon-tag">Rojo · Azul · Negro</div>
+                </div>
+            </div>
+
+            <aside class="card" aria-labelledby="skillsHeading">
+                <h4 id="skillsHeading" style="margin:0 0 10px 0">Habilidades / Herramientas</h4>
+                <div class="grid">
+                    <div class="skill"><strong>Visual Basic</strong><div style="color:#9fb8ff;font-size:13px">Soy EL mejor</div></div>
+                    <div class="skill"><strong>C++</strong><div style="color:#9fb8ff;font-size:13px">Soy imparable</div></div>
+                    <div class="skill"><strong>Python</strong><div style="color:#9fb8ff;font-size:13px">Nadie como yo</div></div>
+                    <div class="skill"><strong>Base de datos</strong><div style="color:#9fb8ff;font-size:13px">Conceptos básicos</div></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="card" style="margin-top:14px">
+            <h3 style="margin:0 0 8px 0">Proyectos</h3>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <div class="skill" style="flex:1 1 260px">
+                    <strong>METODO DE BISCCION</strong>
+                    <p style="margin:8px 0 0;color:#9fb8ff;font-size:13px">Proyecto matematico que resuelve el metodo de biseccion Mediante funciones validas con su grafica integrada.</p>
+                </div>
+                <div class="skill" style="flex:1 1 260px">
+                    <strong>PORTAFOLIO</strong>
+                    <p style="margin:8px 0 0;color:#9fb8ff;font-size:13px">Un portafolio sencillo mostrando mis datos personales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="card" style="margin-top:14px">
+            <h3 style="margin:0 0 8px 0">Contacto</h3>
+            <form onsubmit="event.preventDefault(); alert('Formulario demo — agrega tu lógica');" style="display:flex;gap:10px;flex-wrap:wrap">
+                <input required name="nombre" placeholder="Por parte de:" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#eaf6ff" />
+                <input required name="email" placeholder="Tu coreo electronico:" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#eaf6ff" />
+                <textarea required name="mensaje" placeholder="Mensaje:" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#eaf6ff"></textarea>
+                <button class="btn neon" type="submit">Enviar mensaje<span class="shine" aria-hidden="true"></span></button>
+            </form>
+        </section>
+
+        <footer>Plantilla dinámica • Colores: rojo · azul · negro • Edita el archivo para personalizar enlaces y cédula</footer>
+    </div>
+
+    <script>
+        // Subida de imagen local y vista previa
+        const uploadBtn = document.getElementById('upload');
+        const preview = document.getElementById('profilePreview');
+        uploadBtn.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const url = URL.createObjectURL(file);
+            preview.src = url;
+        });
+
+        // Copiar datos al portapapeles
+        function copyInfo(){
+            const cedula = document.getElementById('cedula').value || '[Cédula no ingresada]';
+            const text = `Nombre: Santiago Acosta
+Ubicación: Venezuela, Portuguesa, Acarigua
+Carrera: Análisis de Sistemas
+Semestre: 4º semestre
+Cédula: ${cedula}
+GitHub: https://github.com/tu-usuario`;
+            navigator.clipboard?.writeText(text).then(()=> {
+                alert('Datos copiados al portapapeles');
+            }, ()=> {
+                alert('No se pudo copiar — copia manualmente');
+            });
+        }
+
+        // Reemplaza el enlace de GitHub con el tuyo si lo editas desde JS (opcional)
+        // document.getElementById('githubBtn').href = 'https://github.com/tu-usuario';
+    </script>
+</body>
+</html></svg></div>
